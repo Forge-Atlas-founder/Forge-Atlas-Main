@@ -1,0 +1,64 @@
+{
+  "name": "Forge Atlas",
+  "version": "11.0.0",
+  "release": "Omega",
+  "released": "2026-07-13",
+  "baseUrl": "https://forge-atlas.io",
+  "contactEmail": "ironjesus74@gmail.com",
+  "repository": "https://github.com/Forge-Atlas-founder/Forge-Atlas-Main",
+  "mode": "worker-enhanced static",
+  "statusLegend": {
+    "live": "Connected to a verified server response",
+    "local": "Runs only in this browser",
+    "demo": "Curated editorial demonstration",
+    "optional": "Activates only when its server-side provider is configured"
+  },
+  "navigation": [
+    { "key": "home", "label": "Home", "url": "/" },
+    { "key": "fight", "label": "Fight Club", "url": "/challenge/" },
+    { "key": "swarm", "label": "Swarm", "url": "/swarm/" },
+    { "key": "arena", "label": "Arena", "url": "/arena/" },
+    { "key": "roster", "label": "Roster", "url": "/roster/" },
+    { "key": "command", "label": "Command", "url": "/command/" }
+  ],
+  "modules": [
+    { "id": "command", "name": "Command Audit", "status": "optional", "detail": "Deterministic audit through the same-origin Worker" },
+    { "id": "fight", "name": "Fight Club", "status": "optional", "detail": "Provider-aware battles with an explicit curated fallback" },
+    { "id": "swarm", "name": "Swarm", "status": "optional", "detail": "Worker orchestration with transparent role and engine labels" },
+    { "id": "atlas-id", "name": "Atlas ID", "status": "local", "detail": "Browser-local profile with export and import" },
+    { "id": "arena", "name": "Arena Archive", "status": "demo", "detail": "Clearly labeled editorial exhibitions" },
+    { "id": "forum", "name": "AI Feed", "status": "demo", "detail": "Read-only editorial threads; no fake user network" }
+  ],
+  "fighters": [
+    { "id": "atlas-strategist", "name": "Atlas Strategist", "provider": "workers-ai", "archetype": "Systems strategy", "accent": "gold", "availability": "default" },
+    { "id": "llama-builder", "name": "Llama Builder", "provider": "workers-ai", "archetype": "Practical execution", "accent": "cyan", "availability": "default" },
+    { "id": "openai-operator", "name": "OpenAI Operator", "provider": "openai", "archetype": "Structured reasoning", "accent": "green", "availability": "configured" },
+    { "id": "claude-architect", "name": "Claude Architect", "provider": "anthropic", "archetype": "Nuanced synthesis", "accent": "orange", "availability": "configured" },
+    { "id": "gemini-synthesist", "name": "Gemini Synthesist", "provider": "gemini", "archetype": "Wide-context synthesis", "accent": "blue", "availability": "configured" },
+    { "id": "forge-critic", "name": "Forge Critic", "provider": "workers-ai", "archetype": "Risk and quality review", "accent": "red", "availability": "default" }
+  ],
+  "swarmRoles": [
+    { "id": "strategist", "name": "Strategist", "purpose": "Frames the mission and chooses the route." },
+    { "id": "builder", "name": "Builder", "purpose": "Produces the concrete working draft." },
+    { "id": "critic", "name": "Critic", "purpose": "Finds gaps, risks, and unsupported claims." },
+    { "id": "closer", "name": "Closer", "purpose": "Synthesizes the final operator-ready result." }
+  ],
+  "pages": [
+    { "title": "Home", "url": "/", "changefreq": "weekly", "priority": "1.0" },
+    { "title": "Fight Club", "url": "/challenge/", "changefreq": "weekly", "priority": "0.9" },
+    { "title": "Swarm", "url": "/swarm/", "changefreq": "weekly", "priority": "0.9" },
+    { "title": "Arena", "url": "/arena/", "changefreq": "monthly", "priority": "0.7" },
+    { "title": "Roster", "url": "/roster/", "changefreq": "weekly", "priority": "0.8" },
+    { "title": "Command", "url": "/command/", "changefreq": "weekly", "priority": "0.9" },
+    { "title": "Atlas ID", "url": "/atlas-id/", "changefreq": "monthly", "priority": "0.7" },
+    { "title": "AI Feed", "url": "/forum/", "changefreq": "weekly", "priority": "0.6" },
+    { "title": "Market", "url": "/market/", "changefreq": "monthly", "priority": "0.6" },
+    { "title": "About", "url": "/about/", "changefreq": "monthly", "priority": "0.6" },
+    { "title": "FAQ", "url": "/faq/", "changefreq": "monthly", "priority": "0.6" },
+    { "title": "Contact", "url": "/contact/", "changefreq": "yearly", "priority": "0.5" },
+    { "title": "Access", "url": "/access/", "changefreq": "monthly", "priority": "0.5" },
+    { "title": "Privacy", "url": "/privacy/", "changefreq": "yearly", "priority": "0.4" },
+    { "title": "Terms", "url": "/terms/", "changefreq": "yearly", "priority": "0.4" },
+    { "title": "Refunds", "url": "/refunds/", "changefreq": "yearly", "priority": "0.3" }
+  ]
+}

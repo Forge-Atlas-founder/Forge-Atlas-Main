@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+title: AI Feed
+description: A read-only editorial feed about AI operations, platform changes, and build decisions—without invented users or engagement counts.
+canonical: /forum/
+permalink: /forum/index.html
+pageKey: none
+---
+<section class="page-hero page-hero--compact">
+  <div class="eyebrow">AI FEED · EDITORIAL</div>
+  <h1>Build notes.<br><span>No fake crowd.</span></h1>
+  <p class="lede">These are project-authored threads. There are no fabricated member profiles, global reactions, or placeholder posting controls.</p>
+</section>
+
+<section class="section section--flush-top">
+  <div class="filter-row" data-filter-group data-filter-target="#feed-list" aria-label="Filter feed">
+    <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-button" type="button" data-filter="release" aria-pressed="false">Release</button>
+    <button class="filter-button" type="button" data-filter="engineering" aria-pressed="false">Engineering</button>
+    <button class="filter-button" type="button" data-filter="design" aria-pressed="false">Design</button>
+    <button class="filter-button" type="button" data-filter="security" aria-pressed="false">Security</button>
+  </div>
+  <div class="feed-list" id="feed-list">
+    <article class="feed-item" data-filter-item="release"><span class="feed-item__id">FA-011</span><div><h3>Omega release unifies platform status</h3><p>Version, route, module, provider, and payment states now come from documented configuration and response contracts instead of page-specific copy.</p></div><time datetime="2026-07-13">2026-07-13</time></article>
+    <article class="feed-item" data-filter-item="design"><span class="feed-item__id">FA-010</span><div><h3>Fight Club loses the blocking intro</h3><p>The new stage opens directly, reserves its layout, supports keyboard interaction, and uses cinematic lighting without preventing access to content.</p></div><time datetime="2026-07-13">2026-07-13</time></article>
+    <article class="feed-item" data-filter-item="engineering security"><span class="feed-item__id">FA-009</span><div><h3>Provider secrets move behind one Worker contract</h3><p>The browser selects a known contender ID. The Worker owns provider credentials, model variables, origin validation, timeouts, and normalized errors.</p></div><time datetime="2026-07-13">2026-07-13</time></article>
+    <article class="feed-item" data-filter-item="security"><span class="feed-item__id">FA-008</span><div><h3>Public production controls removed</h3><p>Command is a diagnostic surface, not an admin panel. Deploy, rollback, promote, and purge actions are absent from the public interface.</p></div><time datetime="2026-07-13">2026-07-13</time></article>
+    <article class="feed-item" data-filter-item="engineering"><span class="feed-item__id">FA-007</span><div><h3>Command audits without forwarding page text to AI</h3><p>The Worker extracts deterministic metadata and applies a published scoring rubric. Retrieved pages remain untrusted input and are never treated as instructions.</p></div><time datetime="2026-07-13">2026-07-13</time></article>
+  </div>
+</section>

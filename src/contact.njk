@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: Contact
+description: Contact Forge Atlas about the project, responsible security reports, or legitimate collaboration.
+canonical: /contact/
+permalink: /contact/index.html
+pageKey: none
+---
+<section class="page-hero page-hero--compact">
+  <div class="eyebrow">CONTACT · ONE VERIFIED CHANNEL</div>
+  <h1>Send a clear<br><span>signal.</span></h1>
+  <p class="lede">There is no hidden form collection. Use the published email for project questions, or the security policy for responsible reports.</p>
+  <div class="button-row">
+    <a class="button button--primary" href="mailto:{{ platform.contactEmail }}">Email Forge Atlas</a>
+    <a class="button" href="{{ platform.repository }}">Open repository</a>
+  </div>
+</section>
+
+<section class="section section--flush-top">
+  <div class="card-grid card-grid--2">
+    <article class="card"><span class="card__index">PROJECT</span><h3>General contact</h3><p>Include the relevant page, expected outcome, and enough context to reproduce a problem. Never email passwords, API keys, payment details, or private datasets.</p><div class="card__footer"><a class="card__link" href="mailto:{{ platform.contactEmail }}">{{ platform.contactEmail }}</a></div></article>
+    <article class="card"><span class="card__index">SECURITY</span><h3>Responsible reports</h3><p>Describe the affected route, impact, and safe reproduction steps. Do not access data that is not yours or test destructively.</p><div class="card__footer"><a class="card__link" href="/.well-known/security.txt">Read security.txt →</a></div></article>
+  </div>
+</section>

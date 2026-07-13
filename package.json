@@ -1,0 +1,27 @@
+{
+  "name": "forge-atlas",
+  "version": "11.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Forge Atlas — a transparent, worker-enhanced AI operations showcase.",
+  "scripts": {
+    "dev": "eleventy --serve --quiet",
+    "preview": "wrangler pages dev dist --ip 127.0.0.1",
+    "build": "eleventy",
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test workers/api/test/*.test.mjs",
+    "worker:check": "node scripts/wrangler-check.mjs worker",
+    "pages:functions:check": "node scripts/wrangler-check.mjs pages",
+    "check": "npm run build && npm run validate && npm test && npm run worker:check && npm run pages:functions:check && npm audit --audit-level=high",
+    "worker:dev": "wrangler dev --config workers/api/wrangler.toml --local",
+    "worker:deploy": "wrangler deploy --config workers/api/wrangler.toml",
+    "pages:deploy": "wrangler pages deploy dist --project-name forge-atlas"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "wrangler": "4.110.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

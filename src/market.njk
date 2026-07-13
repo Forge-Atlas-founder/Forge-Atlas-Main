@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+title: Operator Library
+description: Free Forge Atlas implementation resources and architecture references, clearly labeled and linked to source.
+canonical: /market/
+permalink: /market/index.html
+pageKey: none
+---
+<section class="page-hero page-hero--compact">
+  <div class="eyebrow">OPERATOR LIBRARY · SOURCE-BACKED</div>
+  <h1>Take the<br><span>working parts.</span></h1>
+  <p class="lede">The former market is now a source-backed library. Nothing here pretends to be purchasable inventory.</p>
+</section>
+
+<section class="section section--flush-top">
+  <div class="filter-row" data-filter-group data-filter-target="#product-grid" aria-label="Filter resources">
+    <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-button" type="button" data-filter="worker" aria-pressed="false">Worker</button>
+    <button class="filter-button" type="button" data-filter="frontend" aria-pressed="false">Frontend</button>
+    <button class="filter-button" type="button" data-filter="security" aria-pressed="false">Security</button>
+  </div>
+  <div class="card-grid" id="product-grid">
+    <article class="card product-card" data-filter-item="worker security"><div><span class="product-card__price">Included in source</span><h3>Provider gateway</h3><p>A same-origin Worker router with provider adapters, origin checks, bounded input, timeouts, normalized output, and optional rate-limit binding.</p><ul><li>Workers AI default</li><li>Optional provider secrets</li><li>No arbitrary upstream URLs</li></ul></div><div class="card__footer"><span class="status-chip status-chip--local">Code</span><a class="card__link" href="{{ platform.repository }}/tree/main/workers/api">Inspect →</a></div></article>
+    <article class="card product-card" data-filter-item="worker"><div><span class="product-card__price">Included in source</span><h3>Deterministic SEO audit</h3><p>A compact public-page audit that does not pass retrieved HTML to an AI model.</p><ul><li>Redirect revalidation</li><li>Private-host blocking</li><li>Published scoring rubric</li></ul></div><div class="card__footer"><span class="status-chip status-chip--live">Command</span><a class="card__link" href="/command/">Run it →</a></div></article>
+    <article class="card product-card" data-filter-item="frontend"><div><span class="product-card__price">Included in source</span><h3>Cinematic interface kit</h3><p>Black, gold, cyan, ember, and violet components with semantic controls, responsive stages, and reduced-motion fallbacks.</p><ul><li>Fight Club stage</li><li>Swarm mission room</li><li>Shared status language</li></ul></div><div class="card__footer"><span class="status-chip status-chip--local">CSS</span><a class="card__link" href="{{ platform.repository }}/tree/main/src/assets/css">Inspect →</a></div></article>
+    <article class="card product-card" data-filter-item="security"><div><span class="product-card__price">Included in source</span><h3>Pages hardening pack</h3><p>Cloudflare Pages headers, clean redirects, honest 404 behavior, security.txt, secret examples, and CI validation.</p><ul><li>Strict CSP</li><li>No wildcard soft-404</li><li>Safe cache policy</li></ul></div><div class="card__footer"><span class="status-chip status-chip--local">Config</span><a class="card__link" href="{{ platform.repository }}/tree/main/src/static">Inspect →</a></div></article>
+    <article class="card product-card" data-filter-item="frontend"><div><span class="product-card__price">Included in source</span><h3>Atlas ID local profile</h3><p>A portable browser-local profile with explicit export and import instead of nonexistent account sync.</p><ul><li>Local storage</li><li>JSON validation</li><li>User-controlled backup</li></ul></div><div class="card__footer"><span class="status-chip status-chip--local">Tool</span><a class="card__link" href="/atlas-id/">Build ID →</a></div></article>
+    <article class="card product-card" data-filter-item="security frontend"><div><span class="product-card__price">Included in source</span><h3>Truth-layer content model</h3><p>A reusable four-state language for separating current server behavior, local tools, demos, and optional integrations.</p><ul><li>Consistent badges</li><li>Health semantics</li><li>Provider disclosure</li></ul></div><div class="card__footer"><span class="status-chip status-chip--demo">Reference</span><a class="card__link" href="/about/#truth-layer">Read →</a></div></article>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+layout: layouts/base.njk
+title: Privacy
+description: Forge Atlas privacy practices for local storage, Worker requests, provider calls, and hosting metadata.
+canonical: /privacy/
+permalink: /privacy/index.html
+pageKey: none
+---
+<section class="page-hero page-hero--compact"><div class="eyebrow">PRIVACY · EFFECTIVE 2026-07-13</div><h1>Collect less.<br><span>Explain the rest.</span></h1><p class="lede">This page describes the current source release. Hosting configuration can affect request logging, so the policy avoids promises that the interface alone cannot guarantee.</p></section>
+<section class="section section--flush-top"><div class="prose">
+  <h2>Browser-local information</h2><p>Atlas ID fields, local judgments, and interface preferences can be stored in your browser's localStorage. They are not automatically synchronized. Clearing site data removes them unless you exported a copy.</p>
+  <h2>Worker requests</h2><p>When you deliberately run Fight Club or Swarm, the prompt and selected runtime information are sent to the same-origin Worker and then to the configured provider needed to complete the request. Command audits send the public URL to the Worker; retrieved HTML is analyzed deterministically and is not forwarded to an AI provider.</p>
+  <h2>Hosting and security metadata</h2><p>Cloudflare or another host may process IP address, user agent, request timing, security signals, and similar metadata to deliver and protect the site. The source does not embed advertising or third-party analytics scripts. Server-side retention and controls must be configured in the hosting account.</p>
+  <h2>Information not requested</h2><p>Do not submit passwords, API keys, private records, payment details, or confidential client material. The public site does not provide an account or payment form.</p>
+  <h2>Contact</h2><p>Privacy questions can be sent to <a href="mailto:{{ platform.contactEmail }}">{{ platform.contactEmail }}</a>. Include only the minimum information needed to answer the question.</p>
+</div></section>

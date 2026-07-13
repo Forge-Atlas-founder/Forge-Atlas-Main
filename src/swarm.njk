@@ -1,0 +1,75 @@
+---
+layout: layouts/base.njk
+title: Swarm
+description: Move one mission through strategist, builder, critic, and closer roles with transparent provider and fallback labels.
+canonical: /swarm/
+permalink: /swarm/index.html
+pageKey: swarm
+bodyClass: swarm-page
+pageStyles:
+  - /assets/css/swarm.css
+pageScripts:
+  - /assets/js/swarm.js
+---
+<section class="swarm-hero">
+  <div>
+    <div class="eyebrow">SWARM · ROLE-BASED ORCHESTRATION</div>
+    <h1>One mission.<br><span>Four lenses.</span></h1>
+    <p class="lede">Strategist frames it. Builder makes it. Critic stress-tests it. Closer turns the work into an operator-ready result—with every runtime engine disclosed.</p>
+    <div class="button-row"><a class="button button--primary" href="#mission-console">Deploy a mission</a><a class="button" href="/about/#truth-layer">Read the truth layer</a></div>
+  </div>
+  <div class="hive-visual" aria-hidden="true">
+    <div class="hive-line hive-line--1"></div><div class="hive-line hive-line--2"></div><div class="hive-line hive-line--3"></div><div class="hive-line hive-line--4"></div>
+    <div class="hive-core"><span>Mission</span></div>
+    <div class="hive-node hive-node--1">Strategist</div><div class="hive-node hive-node--2">Builder</div><div class="hive-node hive-node--3">Closer</div><div class="hive-node hive-node--4">Critic</div>
+  </div>
+</section>
+
+<section class="mission-console" id="mission-console" aria-labelledby="mission-title">
+  <div class="mission-setup">
+    <form class="panel" id="swarm-form" novalidate>
+      <div class="panel-head"><div><h2 id="mission-title">Mission control</h2><p>Use Rapid for one structured provider call or Full for staged role execution.</p></div><span class="status-chip status-chip--optional">Worker required</span></div>
+      <div class="form-grid">
+        <div class="field field--full"><label for="mission-text">Objective</label><textarea id="mission-text" name="mission" minlength="10" maxlength="3000" required placeholder="Describe the outcome, audience, constraints, and what a usable final result must contain." aria-describedby="mission-error"></textarea><span class="field-error" id="mission-error"></span></div>
+        <div class="field"><label for="mission-mode">Execution mode</label><select id="mission-mode" name="mode"><option value="rapid">Rapid · one orchestration call</option><option value="full">Full · staged role calls</option></select></div>
+        <div class="field"><label for="mission-provider">Preferred provider</label><select id="mission-provider" name="provider"><option value="workers-ai">Workers AI</option><option value="openai">OpenAI adapter</option><option value="anthropic">Anthropic adapter</option><option value="gemini">Gemini adapter</option></select></div>
+      </div>
+      <div class="button-row"><button class="button button--primary" type="submit">Deploy swarm <span aria-hidden="true">↗</span></button></div>
+    </form>
+
+    <aside class="panel" aria-labelledby="preset-title">
+      <div class="panel-head"><div><h2 id="preset-title">Mission cards</h2><p>These exact prompts have labeled curated fallbacks.</p></div></div>
+      <div class="mission-presets">
+        <button class="mission-preset" type="button" data-mission-demo="launch"><strong>Launch plan</strong><span>Turn a product brief into a reversible release sequence.</span></button>
+        <button class="mission-preset" type="button" data-mission-demo="workflow"><strong>Workflow audit</strong><span>Find automation opportunities and rank them.</span></button>
+        <button class="mission-preset" type="button" data-mission-demo="content"><strong>Content system</strong><span>Build a repeatable evidence-first publishing workflow.</span></button>
+      </div>
+    </aside>
+  </div>
+
+  <section class="swarm-room" data-swarm-room aria-labelledby="mission-room-title">
+    <div class="swarm-room__bar"><span id="mission-room-title" data-mission-id>MISSION · STANDBY</span><span data-mission-engine>Engine pending</span><span data-mission-status>Waiting</span></div>
+    <div class="swarm-room__body">
+      <aside class="role-rail" aria-label="Swarm role status">
+        <h2>Execution graph</h2>
+        {% for role in platform.swarmRoles %}<div class="role-node" data-role-node="{{ role.id }}" data-state="waiting"><span class="role-node__number">0{{ loop.index }}</span><div><strong>{{ role.name }}</strong><span>{{ role.purpose }}</span></div></div>{% endfor %}
+      </aside>
+      <div class="swarm-output">
+        <div class="swarm-log" data-swarm-log><span><i></i>Awaiting a verified Worker response</span></div>
+        <div class="swarm-results" role="region" aria-label="Swarm role outputs" tabindex="0">
+          {% for role in platform.swarmRoles %}<article class="role-output{% if role.id == 'closer' %} role-output--closer{% endif %}" data-role-output="{{ role.id }}"><div class="role-output__head"><h3>{{ role.name }}</h3><span class="tag" data-role-engine="{{ role.id }}">Engine pending</span></div><pre data-role-text="{{ role.id }}">No output yet.</pre></article>{% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="notice notice--warning swarm-fallback" data-swarm-fallback><div><strong>Live mission unavailable.</strong> <span data-swarm-fallback-message>The Worker did not return a verified mission.</span> <button class="button button--small" type="button" data-run-swarm-demo>Run the labeled curated mission</button></div></div>
+</section>
+
+<section class="section">
+  <div class="section-heading"><div><div class="eyebrow">EXECUTION MODES</div><h2>Cost and latency<br><span>made visible.</span></h2></div><p>Rapid mode asks one provider to return all four role sections. Full mode performs a staged orchestration and is slower and more expensive.</p></div>
+  <div class="card-grid card-grid--2">
+    <article class="card"><span class="card__index">RAPID</span><h3>One bounded call</h3><p>Best for exploration and lower cost. The provider produces strategist, builder, critic, and closer sections in one normalized response.</p><div class="card__footer"><span class="status-chip status-chip--optional">1 provider call</span></div></article>
+    <article class="card"><span class="card__index">FULL</span><h3>Staged execution</h3><p>Strategist and critic begin independently, Builder uses the plan, and Closer synthesizes the outputs. Use only when the extra calls add value.</p><div class="card__footer"><span class="status-chip status-chip--optional">4 provider calls</span></div></article>
+  </div>
+</section>

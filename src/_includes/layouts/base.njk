@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#07080b">
+    <meta name="color-scheme" content="dark">
+    <title>{{ title | escape }}{% if title != platform.name %} · {{ platform.name | escape }}{% endif %}</title>
+    <meta name="description" content="{{ description | escape }}">
+    {% if noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+    <link rel="canonical" href="{{ canonical | absoluteUrl }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ platform.name }}">
+    <meta property="og:title" content="{{ title | escape }}{% if title != platform.name %} · {{ platform.name | escape }}{% endif %}">
+    <meta property="og:description" content="{{ description | escape }}">
+    <meta property="og:url" content="{{ canonical | absoluteUrl }}">
+    <meta property="og:image" content="{{ '/assets/images/opengraph.jpg' | absoluteUrl }}">
+    <meta property="og:image:alt" content="Forge Atlas — black, gold, and cyan AI operations interface">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title | escape }}{% if title != platform.name %} · {{ platform.name | escape }}{% endif %}">
+    <meta name="twitter:description" content="{{ description | escape }}">
+    <meta name="twitter:image" content="{{ '/assets/images/opengraph.jpg' | absoluteUrl }}">
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    {% for stylesheet in pageStyles or [] %}<link rel="stylesheet" href="{{ stylesheet }}">{% endfor %}
+  </head>
+  <body class="{{ bodyClass or '' }}" data-page="{{ pageKey or '' }}">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <div class="system-ribbon" aria-label="Platform release status">
+      <span><i class="status-pip" aria-hidden="true"></i>{{ platform.release }} {{ platform.version }}</span>
+      <span class="system-ribbon__mode">{{ platform.mode }}</span>
+      <a href="/about/#truth-layer">truth layer</a>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Forge Atlas home">
+        <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M32 6 8 57h12l4-10h16l4 10h12L32 6Zm0 18 5 14H27l5-14Z" fill="currentColor"/>
+          <path d="m32 11-2 12 5 8-3 11" fill="none" stroke="var(--ember)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>FORGE ATLAS</span>
+        <small>{{ platform.release }}</small>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-nav-toggle>
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation" data-nav>
+        {% for item in platform.navigation %}
+          <a href="{{ item.url }}"{% if pageKey == item.key %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endfor %}
+        <a class="nav-utility" href="/atlas-id/">Atlas ID</a>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer" itemscope itemtype="https://schema.org/Organization">
+      <div class="footer-grid">
+        <div>
+          <a class="brand brand--footer" href="/" itemprop="url"><span itemprop="name">FORGE ATLAS</span></a>
+          <p>AI operations interfaces with an explicit truth layer. Live, local, demo, and optional states are never mixed.</p>
+        </div>
+        <div>
+          <h2>Platform</h2>
+          <a href="/challenge/">Fight Club</a>
+          <a href="/swarm/">Swarm</a>
+          <a href="/command/">Command</a>
+          <a href="/roster/">Roster</a>
+        </div>
+        <div>
+          <h2>Project</h2>
+          <a href="/about/">About</a>
+          <a href="/faq/">FAQ</a>
+          <a href="/contact/">Contact</a>
+          <a href="{{ platform.repository }}" rel="noopener">Source</a>
+        </div>
+        <div>
+          <h2>Policies</h2>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/refunds/">Refunds</a>
+          <a href="/.well-known/security.txt">Security</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Forge Atlas</span>
+        <span>{{ platform.release }} {{ platform.version }} · Provider names are trademarks of their respective owners; no affiliation is implied.</span>
+      </div>
+    </footer>
+
+    <div class="toast-region" role="status" aria-live="polite" aria-atomic="true" data-toast></div>
+    <script type="module" src="/assets/js/site.js"></script>
+    {% for script in pageScripts or [] %}<script type="module" src="{{ script }}"></script>{% endfor %}
+  </body>
+</html>

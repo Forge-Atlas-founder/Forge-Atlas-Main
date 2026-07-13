@@ -1,0 +1,23 @@
+name = "forge-atlas-api"
+main = "src/index.js"
+compatibility_date = "2026-07-13"
+workers_dev = false
+routes = [
+  { pattern = "forge-atlas.io/api/*", zone_name = "forge-atlas.io" }
+]
+
+[ai]
+binding = "AI"
+
+[vars]
+WORKERS_AI_MODEL = "@cf/zai-org/glm-4.7-flash"
+ALLOWED_ORIGINS = "https://forge-atlas.io"
+REQUIRE_RATE_LIMITER = "true"
+
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1101"
+
+  [ratelimits.simple]
+  limit = 12
+  period = 60
