@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+title: Command
+description: Verify Forge Atlas Worker health and run a deterministic metadata audit against a public HTTPS page.
+canonical: /command/
+permalink: /command/index.html
+pageKey: command
+pageScripts:
+  - /assets/js/command.js
+---
+<section class="page-hero page-hero--compact">
+  <div class="eyebrow">COMMAND · DIAGNOSTIC SURFACE</div>
+  <h1>Measure first.<br><span>Then move.</span></h1>
+  <p class="lede">Command performs two bounded actions: verify the public Worker contract and audit metadata from a public HTTPS page. It cannot mutate production infrastructure.</p>
+</section>
+
+<section class="section section--flush-top">
+  <div class="command-layout">
+    <aside class="panel" aria-labelledby="systems-title">
+      <div class="panel-head"><div><h2 id="systems-title">Systems</h2><p>Status changes only after a current response.</p></div></div>
+      <div class="system-list" data-system-list>
+        <div class="system-row"><span>Static interface</span><span class="status-chip status-chip--live">Loaded</span></div>
+        <div class="system-row"><span>API Worker</span><span class="status-chip" data-system="worker">Not checked</span></div>
+        <div class="system-row"><span>Request protection</span><span class="status-chip" data-system="rate-limit">Not checked</span></div>
+        <div class="system-row"><span>Workers AI</span><span class="status-chip" data-system="workers-ai">Not checked</span></div>
+        <div class="system-row"><span>OpenAI adapter</span><span class="status-chip" data-system="openai">Not checked</span></div>
+        <div class="system-row"><span>Anthropic adapter</span><span class="status-chip" data-system="anthropic">Not checked</span></div>
+        <div class="system-row"><span>Gemini adapter</span><span class="status-chip" data-system="gemini">Not checked</span></div>
+      </div>
+      <div class="button-row"><button class="button button--small" type="button" data-check-health>Check systems</button></div>
+      <p class="field-error" data-health-error aria-live="polite"></p>
+    </aside>
+
+    <div class="panel">
+      <div class="panel-head"><div><h2>Public-page audit</h2><p>Deterministic checks for metadata and crawl readiness. Retrieved HTML is treated as untrusted data and is not sent to an AI model.</p></div><span class="status-chip status-chip--optional">Worker required</span></div>
+      <form id="audit-form" novalidate>
+        <div class="field"><label for="audit-url">Public HTTPS URL</label><input id="audit-url" name="url" type="url" inputmode="url" autocomplete="url" placeholder="https://example.com/" required maxlength="2048" aria-describedby="audit-error"><span class="field-error" id="audit-error"></span></div>
+        <div class="button-row"><button class="button button--primary" type="submit">Run audit</button><button class="button" type="button" data-audit-self>Use Forge Atlas</button></div>
+      </form>
+
+      <section class="stack-top-lg" data-audit-results hidden aria-labelledby="audit-result-title">
+        <div class="panel-head"><div><div class="eyebrow">RESULT</div><h3 id="audit-result-title" data-audit-title>Audit complete</h3><p data-audit-summary></p></div><div class="audit-score" data-audit-score aria-label="Audit score">—</div></div>
+        <div class="audit-results" data-audit-items></div>
+      </section>
+    </div>
+  </div>
+
+  <div class="notice stack-top"><div><strong>SSRF protection:</strong> the Worker accepts public HTTPS targets only, blocks local/private host patterns and direct IP addresses, revalidates redirects, limits response size, and applies a timeout.</div></div>
+</section>
+
+<section class="section">
+  <div class="section-heading"><div><div class="eyebrow">PUBLIC BOUNDARY</div><h2>Diagnostics,<br><span>not admin.</span></h2></div><p>Deploy, rollback, promotion, purge, token, and account operations belong in an authenticated control plane—not this page.</p></div>
+  <div class="truth-grid">
+    <article class="truth-item"><span class="tag">GET</span><h3>Health</h3><p>Reports release, Worker readiness, and configured provider states without returning secrets.</p></article>
+    <article class="truth-item"><span class="tag">POST</span><h3>Audit</h3><p>Fetches one public page and scores a published set of deterministic checks.</p></article>
+    <article class="truth-item"><span class="tag">NONE</span><h3>Mutation</h3><p>No public action can deploy code, change DNS, clear caches, or alter accounts.</p></article>
+    <article class="truth-item"><span class="tag">SAFE FAIL</span><h3>Unavailable</h3><p>A missing or unhealthy Worker stays visibly unavailable instead of turning green.</p></article>
+  </div>
+</section>

@@ -1,0 +1,96 @@
+---
+layout: layouts/base.njk
+title: AI Fight Club
+description: Pick two registered AI contenders, give them the same task, inspect the exact runtime engines, and judge the result locally.
+canonical: /challenge/
+permalink: /challenge/index.html
+pageKey: fight
+bodyClass: fight-page
+pageStyles:
+  - /assets/css/fight-club.css
+pageScripts:
+  - /assets/js/fight-club.js
+---
+<section class="fight-hero">
+  <div class="fight-hero__content">
+    <div class="fight-hero__hud"><span class="status-chip status-chip--optional">Provider-aware</span><span class="status-chip status-chip--local">Judging stays local</span><span class="status-chip status-chip--demo">Explicit demo fallback</span></div>
+    <div class="eyebrow">FORGE ATLAS · HEAD-TO-HEAD</div>
+    <h1>AI <em>Fight Club</em></h1>
+    <p class="lede">Two registered contenders. One identical task. Exact engines disclosed after the round. You judge the work—not the logo.</p>
+    <div class="button-row"><a class="button button--primary" href="#fight-console">Build a matchup</a><a class="button" href="/arena/">View editorial archive</a></div>
+  </div>
+</section>
+
+<section class="fight-console" id="fight-console" aria-labelledby="fight-console-title">
+  <div class="fight-setup">
+    <div class="panel">
+      <div class="panel-head"><div><h2 id="fight-console-title">Choose two</h2><p>Selection order sets the left and right corners.</p></div><span class="tag" data-selection-count>2 / 2</span></div>
+      <div class="fighter-picker" data-fighter-picker>
+        {% for fighter in platform.fighters %}
+          <button class="fighter-option" type="button" data-fighter-id="{{ fighter.id }}" data-fighter-name="{{ fighter.name }}" data-fighter-provider="{{ fighter.provider }}" aria-pressed="{% if loop.index <= 2 %}true{% else %}false{% endif %}">
+            <strong>{{ fighter.name }}</strong><span>{{ fighter.archetype }}</span><small>{{ fighter.provider }} · {% if fighter.availability == 'default' %}AI binding{% else %}secret required{% endif %}</small>
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <form class="panel" id="fight-form" novalidate>
+      <div class="panel-head"><div><h2>Set the task</h2><p>The Worker sends the same instruction and output constraint to both contenders.</p></div><span class="status-chip status-chip--optional">Worker required</span></div>
+      <div class="form-grid">
+        <div class="field field--full"><label for="fight-prompt">Task</label><textarea id="fight-prompt" name="prompt" minlength="5" maxlength="2000" required placeholder="Explain, build, compare, review, or solve something specific." aria-describedby="fight-error"></textarea><span class="field-error" id="fight-error"></span></div>
+        <div class="field"><label for="fight-mode">Judging mode</label><select id="fight-mode" name="mode"><option value="precision">Precision</option><option value="creative">Creative</option><option value="code">Code</option><option value="strategy">Strategy</option></select></div>
+        <div class="field"><label for="fight-length">Maximum length</label><select id="fight-length" name="maxWords"><option value="120">120 words</option><option value="250" selected>250 words</option><option value="500">500 words</option></select></div>
+      </div>
+      <div class="field-label stack-top">Curated demo prompts</div>
+      <div class="prompt-chips">
+        <button class="prompt-chip" type="button" data-demo-key="recursion">Explain recursion in one sentence.</button>
+        <button class="prompt-chip" type="button" data-demo-key="launch">Create a five-step launch checklist.</button>
+        <button class="prompt-chip" type="button" data-demo-key="security">Review an API gateway for its top three risks.</button>
+      </div>
+      <div class="button-row"><button class="button button--primary" type="submit">Start round <span aria-hidden="true">↗</span></button></div>
+    </form>
+  </div>
+
+  <section class="fight-stage" data-fight-stage hidden aria-labelledby="round-title">
+    <div class="fight-stage__bar">
+      <span id="round-title" data-round-id>ROUND · STANDBY</span>
+      <div class="fight-progress" role="progressbar" aria-label="Round progress" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><i data-step="1"></i><i data-step="2"></i><i data-step="3"></i></div>
+      <span data-round-status>Waiting</span>
+    </div>
+    <div class="fight-stage__grid">
+      <article class="fighter-screen fighter-screen--left">
+        <header><span class="fighter-screen__tag" data-left-provider>LEFT CORNER</span><h2 class="fighter-screen__name" data-left-name>Contender one</h2></header>
+        <div class="fighter-screen__output" data-left-output aria-live="polite">Response will appear here.</div>
+        <div class="fighter-screen__meta"><span class="tag" data-left-model>Model pending</span><span class="tag" data-left-latency>Latency pending</span></div>
+      </article>
+      <div class="versus-core" aria-hidden="true"><div class="versus-core__line"></div><div class="versus-core__ring">VS</div><div class="versus-core__line"></div></div>
+      <article class="fighter-screen fighter-screen--right">
+        <header><span class="fighter-screen__tag" data-right-provider>RIGHT CORNER</span><h2 class="fighter-screen__name" data-right-name>Contender two</h2></header>
+        <div class="fighter-screen__output" data-right-output aria-live="polite">Response will appear here.</div>
+        <div class="fighter-screen__meta"><span class="tag" data-right-model>Model pending</span><span class="tag" data-right-latency>Latency pending</span></div>
+      </article>
+    </div>
+  </section>
+
+  <div class="judge-deck" data-judge-deck>
+    <button class="button judge-deck__choice" type="button" data-judge="left">Left wins</button>
+    <p>Judge instruction fit, correctness, usefulness, and efficiency.</p>
+    <button class="button judge-deck__choice" type="button" data-judge="right">Right wins</button>
+    <button class="button button--small" type="button" data-judge="tie">Call a tie</button>
+    <div class="fight-result" data-fight-result aria-live="polite"></div>
+  </div>
+
+  <div class="notice notice--warning fight-fallback" data-fight-fallback>
+    <div><strong>Live round unavailable.</strong> <span data-fallback-message>The Worker did not return two verified responses.</span> <button class="button button--small" type="button" data-run-demo>Run the labeled curated demo</button></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading"><div><div class="eyebrow">ROUND CONTRACT</div><h2>No invisible<br><span>substitutions.</span></h2></div><p>Every completed response includes the contender persona, actual provider, actual configured model, latency, and whether a provider fallback occurred.</p></div>
+  <div class="truth-grid">
+    <article class="truth-item"><span class="tag">SAME TASK</span><h3>Fair input</h3><p>Both contenders receive the same user task, mode, and requested word limit.</p></article>
+    <article class="truth-item"><span class="tag">SERVER MAP</span><h3>Known providers</h3><p>The Worker accepts registered IDs only and never arbitrary upstream URLs.</p></article>
+    <article class="truth-item"><span class="tag">LOCAL VOTE</span><h3>Private judgment</h3><p>Your result stays in browser storage and is not shown as a global leaderboard.</p></article>
+    <article class="truth-item"><span class="tag">SAFE FAIL</span><h3>Visible outage</h3><p>Provider or Worker failure produces an unavailable state before any demo is offered.</p></article>
+  </div>
+</section>

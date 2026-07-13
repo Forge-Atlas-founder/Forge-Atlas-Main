@@ -1,0 +1,48 @@
+---
+layout: layouts/base.njk
+title: Roster
+description: Forge Atlas contender personas and their runtime provider requirements, with no stale model-version claims.
+canonical: /roster/
+permalink: /roster/index.html
+pageKey: roster
+---
+<section class="page-hero page-hero--compact">
+  <div class="eyebrow">ROSTER · PROVIDER-AWARE</div>
+  <h1>Personas up front.<br><span>Engines disclosed.</span></h1>
+  <p class="lede">Contender names describe the role they play. Completed runs disclose the actual provider and model returned by the Worker, so a persona is never mistaken for a provider call.</p>
+</section>
+
+<section class="section section--flush-top">
+  <div class="notice"><div><strong>Runtime rule:</strong> provider model identifiers are configured server-side and can change without rewriting the public roster. Fight Club shows the exact model used for each completed response.</div></div>
+  <div class="card-grid card-grid--3 stack-top-lg">
+    {% for fighter in platform.fighters %}
+      <article class="card roster-card">
+        <div>
+          <span class="roster-card__provider">{{ fighter.provider }}</span>
+          <h3>{{ fighter.name }}</h3>
+          <p>{{ fighter.archetype }}</p>
+          <div class="roster-card__meta">
+            <span>Persona ID <b>{{ fighter.id }}</b></span>
+            <span>Activation <b>{% if fighter.availability == 'default' %}AI binding{% else %}Server secret{% endif %}</b></span>
+          </div>
+        </div>
+        <div class="card__footer"><span class="status-chip status-chip--optional">Runtime checked</span><a class="card__link" href="/challenge/?fighter={{ fighter.id }}">Select →</a></div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading"><div><div class="eyebrow">PROVIDER CONTRACT</div><h2>Configured at<br><span>the edge.</span></h2></div><p>The browser can request a supported contender ID. It cannot select arbitrary upstream URLs, inject an API key, or override the provider registry.</p></div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Provider adapter</th><th>Server requirement</th><th>Browser exposure</th><th>Fallback behavior</th></tr></thead>
+      <tbody>
+        <tr><td>Cloudflare Workers AI</td><td><code>AI</code> binding and optional model variable</td><td>Model name after a completed call</td><td>Unavailable if binding is absent</td></tr>
+        <tr><td>OpenAI</td><td>Secret key and explicit model variable</td><td>Provider/model label after a completed call</td><td>Workers AI only when clearly labeled</td></tr>
+        <tr><td>Anthropic</td><td>Secret key and explicit model variable</td><td>Provider/model label after a completed call</td><td>Workers AI only when clearly labeled</td></tr>
+        <tr><td>Google Gemini</td><td>Secret key and explicit model variable</td><td>Provider/model label after a completed call</td><td>Workers AI only when clearly labeled</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+title: FAQ
+description: Honest answers about what Forge Atlas does, what is live, how data is handled, and what configuration is required.
+canonical: /faq/
+permalink: /faq/index.html
+pageKey: none
+---
+<section class="page-hero page-hero--compact">
+  <div class="eyebrow">FAQ · NO FINE-PRINT GAMES</div>
+  <h1>Direct<br><span>answers.</span></h1>
+  <p class="lede">If a feature is a demo, optional integration, or browser-local tool, the answer says so.</p>
+</section>
+
+<section class="section section--flush-top">
+  <div class="faq-list">
+    <details open><summary>What is genuinely live?</summary><div>Static pages are live by definition. Command's health and audit results are live only after the same-origin Worker returns a valid response. Fight Club and Swarm show the exact engine used for each completed run.</div></details>
+    <details><summary>Are Arena matches real provider calls?</summary><div>No. The Arena is an editorial exhibition archive. Use Fight Club for current provider-aware comparisons.</div></details>
+    <details><summary>What happens if a provider is not configured?</summary><div>The interface reports that state. If Workers AI is available, the Worker may use it as a labeled fallback. A curated demo is never substituted silently.</div></details>
+    <details><summary>Where are API keys stored?</summary><div>Provider credentials belong in Cloudflare Worker secrets. They are not included in the repository, HTML, public configuration, health response, or browser storage.</div></details>
+    <details><summary>Does Atlas ID sync between devices?</summary><div>No automatic account sync exists. Atlas ID is stored in the current browser. Export the JSON file and import it on another device if you want to move it.</div></details>
+    <details><summary>Does Forge Atlas track visitors?</summary><div>The source does not load advertising or third-party analytics scripts. Hosting and security providers may still process request metadata needed to deliver and protect the site; see the Privacy page.</div></details>
+    <details><summary>Can I purchase premium access?</summary><div>No. Paid access is paused. The site does not claim that a checkout is active and does not request transaction identifiers.</div></details>
+    <details><summary>Is Command an admin panel?</summary><div>No. The public page contains health and audit tools only. It cannot deploy, roll back, promote, purge, or mutate production infrastructure.</div></details>
+    <details><summary>Is Forge Atlas affiliated with model providers?</summary><div>No affiliation or endorsement is implied. Provider and model-family names remain trademarks of their respective owners.</div></details>
+    <details><summary>Can I inspect or deploy the code?</summary><div>Yes. The repository includes the source tree, build commands, Worker contract, configuration examples, tests, and deployment notes. Real provider use still requires your own authorized server-side configuration.</div></details>
+  </div>
+</section>

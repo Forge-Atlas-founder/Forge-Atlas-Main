@@ -1,64 +1,36 @@
-name: Frogbot Scan and Fix
+name: Frogbot Repository Scan
 
 on:
-  pull_request_target:
-    types: [opened, synchronize, reopened]
-    branches: [main]
-    paths-ignore:
-      - "**/*.md"
-      - "docs/**"
   workflow_dispatch:
   schedule:
     - cron: "17 4 * * 1" # weekly, Monday 04:17 UTC
 
 permissions:
-  contents: write
-  pull-requests: write
-  issues: write
-  security-events: write
-  actions: read
-  checks: read
+  contents: read
 
 concurrency:
-  group: frogbot-${{ github.event.pull_request.number || github.ref || github.run_id }}
+  group: frogbot-${{ github.ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
-  frogbot-pr-scan:
-    name: Scan PR and suggest fixes
-    if: github.event_name == 'pull_request_target'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout PR HEAD
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 0
-
-      - name: Run Frogbot on PR
-        uses: jfrog/frogbot@v2
-        env:
-          JF_URL: ${{ secrets.JF_URL }}
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-          JF_GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JF_GIT_PROVIDER: github
-          JF_WORKING_DIR: .
-          JF_FAIL: "true"
-
   frogbot-repo-scan:
     name: Scheduled/manual repo scan
-    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: read
+      security-events: write
 
     steps:
       - name: Checkout default branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Run Frogbot on repository
-        uses: jfrog/frogbot@v2
+        uses: jfrog/frogbot@a2e5edb22925b75bda6847bb46b75e4015cc38db # v2
         env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}

@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+title: Atlas ID
+description: Build a portable Forge Atlas operator profile stored only in your browser, with validated JSON export and import.
+canonical: /atlas-id/
+permalink: /atlas-id/index.html
+pageKey: none
+pageScripts:
+  - /assets/js/atlas-id.js
+---
+<section class="page-hero page-hero--compact">
+  <div class="eyebrow">ATLAS ID · LOCAL PROFILE</div>
+  <h1>Your mark.<br><span>Your file.</span></h1>
+  <p class="lede">Build an operator card without an account. It stays in this browser until you export it; importing the JSON is how you move it to another device.</p>
+</section>
+
+<section class="section section--flush-top">
+  <div class="id-builder">
+    <form class="panel" id="atlas-id-form" novalidate>
+      <div class="panel-head"><div><h2>Profile fields</h2><p>Only plain text and supported values are accepted.</p></div><span class="status-chip status-chip--local">Browser local</span></div>
+      <div class="form-grid">
+        <div class="field field--full"><label for="callsign">Callsign</label><input id="callsign" name="callsign" maxlength="24" autocomplete="nickname" placeholder="NORTHSTAR" required aria-describedby="callsign-error"><span class="field-error" id="callsign-error"></span></div>
+        <div class="field"><label for="role">Operator role</label><select id="role" name="role"><option>Systems Architect</option><option>Automation Builder</option><option>AI Strategist</option><option>Security Reviewer</option><option>Creative Operator</option><option>Research Lead</option></select></div>
+        <div class="field"><label for="accent">Card accent</label><select id="accent" name="accent"><option value="gold">Atlas Gold</option><option value="cyan">Signal Cyan</option><option value="violet">Swarm Violet</option><option value="ember">Forge Ember</option><option value="green">Verified Green</option></select></div>
+        <div class="field field--full"><label for="bio">Operator brief</label><textarea id="bio" name="bio" maxlength="240" placeholder="What you build, what you value, and how you work." aria-describedby="bio-help"></textarea><small id="bio-help"><span data-bio-count>0</span>/240 characters</small></div>
+      </div>
+      <div class="button-row"><button class="button button--primary" type="submit">Save locally</button><button class="button" type="button" data-export-profile>Export JSON</button><label class="button" for="profile-import">Import JSON</label><input class="sr-only" id="profile-import" type="file" accept="application/json,.json"><button class="button button--danger" type="button" data-reset-profile>Reset</button></div>
+      <div class="field-error stack-top" data-form-error aria-live="polite"></div>
+    </form>
+
+    <article class="id-card" data-profile-card data-accent="gold" aria-label="Atlas ID preview">
+      <div class="id-card__sigil" aria-hidden="true"><span data-profile-sigil>FA</span></div>
+      <h2 data-profile-callsign>UNCLAIMED</h2>
+      <div class="id-card__role" data-profile-role>Systems Architect</div>
+      <p class="id-card__bio" data-profile-bio>Your operator brief will appear here.</p>
+      <div class="id-card__code" data-profile-code>ATLAS-00000000</div>
+    </article>
+  </div>
+  <div class="notice stack-top"><div><strong>Backup note:</strong> browser storage can be cleared by privacy settings or device cleanup. Export a JSON copy if the profile matters to you. Imported files are validated and are never executed as code.</div></div>
+</section>

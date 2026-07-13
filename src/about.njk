@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+title: About
+description: The mission, architecture, truth layer, and operating principles behind Forge Atlas.
+canonical: /about/
+permalink: /about/index.html
+pageKey: none
+---
+<section class="page-hero page-hero--compact">
+  <div class="eyebrow">MISSION · ARCHITECTURE · ACCOUNTABILITY</div>
+  <h1>Built to show<br><span>its work.</span></h1>
+  <p class="lede">Forge Atlas is not a fake network of autonomous agents. It is a maintainable static interface with an optional same-origin Worker layer, honest demos, and local-first tools.</p>
+</section>
+
+<section class="section section--flush-top" id="truth-layer">
+  <div class="section-heading">
+    <div><div class="eyebrow">01 · OPERATING MODEL</div><h2>Clear boundaries.<br><span>Useful results.</span></h2></div>
+    <p>The interface remains useful without a backend. When providers are configured, their exact runtime identity appears beside the result.</p>
+  </div>
+  <div class="card-grid">
+    <article class="card"><span class="card__index">STATIC CORE</span><h3>Fast everywhere</h3><p>Pre-rendered semantic HTML, one global stylesheet, page-specific assets, no third-party font dependency, and no blocking intro gate.</p></article>
+    <article class="card"><span class="card__index">WORKER EDGE</span><h3>Secrets stay server-side</h3><p>Provider credentials, URL fetching, input validation, fail-closed rate limiting, and response normalization live in the Worker—not browser JavaScript.</p></article>
+    <article class="card"><span class="card__index">TRUTH LAYER</span><h3>Status comes from evidence</h3><p>Reachable is not the same as healthy. Optional is not the same as live. Editorial simulations remain labeled.</p></article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div><div class="eyebrow">02 · DATA FLOW</div><h2>Small surface.<br><span>Strong defaults.</span></h2></div>
+    <p>The site avoids accounts and collection it does not need.</p>
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Interface</th><th>Data</th><th>Location</th><th>Default state</th></tr></thead>
+      <tbody>
+        <tr><td>Command audit</td><td>Public URL and retrieved metadata</td><td>Same-origin Worker</td><td>Deterministic; page content is not sent to AI</td></tr>
+        <tr><td>Fight Club</td><td>Prompt and selected contenders</td><td>Worker and configured providers</td><td>Requires explicit run action</td></tr>
+        <tr><td>Swarm</td><td>Mission text and selected mode</td><td>Worker and configured provider</td><td>Requires explicit deploy action</td></tr>
+        <tr><td>Atlas ID</td><td>Callsign, role, and bio</td><td>Browser localStorage</td><td>Local until exported</td></tr>
+        <tr><td>Votes and filters</td><td>Local preferences</td><td>Browser only</td><td>No global totals</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="prose">
+    <div class="eyebrow">03 · DESIGN PRINCIPLES</div>
+    <h2>What the platform optimizes for</h2>
+    <p><strong>Truth before theater.</strong> The visual identity can be cinematic without presenting scripts as current provider output.</p>
+    <p><strong>Operator control.</strong> Prompts are submitted deliberately. Profiles can be exported. No hidden production controls are exposed in public UI.</p>
+    <p><strong>Portable architecture.</strong> The static build can be hosted anywhere; the Worker is isolated behind a documented API contract.</p>
+    <p><strong>Safe failure.</strong> Provider outages produce a visible unavailable state. Curated fallbacks only appear after the visitor chooses them.</p>
+    <h2>Version policy</h2>
+    <p>The release displayed in headers, footers, health responses, documentation, and generated files comes from <code>config/platform.json</code>. Stale “two minutes ago” telemetry is not generated.</p>
+  </div>
+</section>
