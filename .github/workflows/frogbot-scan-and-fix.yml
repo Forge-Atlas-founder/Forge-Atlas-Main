@@ -30,7 +30,7 @@ jobs:
           persist-credentials: false
 
       - name: Run Frogbot on repository
-        uses: jfrog/frogbot@a2e5edb22925b75bda6847bb46b75e4015cc38db # v2
+        uses: jfrog/frogbot@7d2603d053b111cb5c2470ea89bd5bb14154fa79 # v2
         env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
